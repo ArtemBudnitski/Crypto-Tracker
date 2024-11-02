@@ -12,7 +12,6 @@ class CryptoTrackerApp: Application() {
         startKoin{
             androidContext(this@CryptoTrackerApp)
             androidLogger()
-
             modules(appModule)
         }
     }

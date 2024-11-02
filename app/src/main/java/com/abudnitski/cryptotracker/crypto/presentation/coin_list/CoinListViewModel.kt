@@ -32,7 +32,7 @@ class CoinListViewModel(
             CoinListState()
         )
 
-    private val _events= Channel<CoinListEvent>()
+    private val _events = Channel<CoinListEvent>()
     val events = _events.receiveAsFlow()
 
     fun onAction(action: CoinListAction) {
@@ -40,13 +40,32 @@ class CoinListViewModel(
             is CoinListAction.OnCoinClick -> {
                 selectCoin(action.coinUi)
             }
+
+            is CoinListAction.OnRetryClick -> {
+                loadCoins()
+            }
         }
     }
 
-    private fun selectCoin(coinUi: CoinUi){
-        _uiState.update { it.copy(
-            selectedCoin = coinUi
-        ) }
+    fun onSearchTextChange(text: String) {
+        _uiState.update { it.copy(searchText = text) }
+    }
+
+    fun onSearch(text: String) {
+        _uiState.update {
+            it.copy(
+                coins = it.coins.filter { coin ->
+                    coin.symbol.contains(text, ignoreCase = true) || coin.name.contains(text, ignoreCase = true)
+                })
+        }
+    }
+
+    private fun selectCoin(coinUi: CoinUi) {
+        _uiState.update {
+            it.copy(
+                selectedCoin = coinUi
+            )
+        }
 
         viewModelScope.launch {
             coinDataSource
@@ -58,7 +77,7 @@ class CoinListViewModel(
                 .onSuccess { history ->
                     val dataPointHistory = history
                         .sortedBy { it.dateTime }
-                        .map{
+                        .map {
                             DataPoint(
                                 x = it.dateTime.hour.toFloat(),
                                 y = it.priceUsd.toFloat(),
@@ -70,7 +89,7 @@ class CoinListViewModel(
 
                     _uiState.update {
                         it.copy(
-                            selectedCoin =  it.selectedCoin?.copy(
+                            selectedCoin = it.selectedCoin?.copy(
                                 coinPriceHistory = dataPointHistory
                             )
                         )
@@ -98,15 +117,15 @@ class CoinListViewModel(
                             isLoading = false,
                             coins = coins.map { coin ->
                                 coin.toCoinUi()
-                            }
+                            },
+                            isDataInitError = false
                         )
                     }
                 }
                 .onError { error ->
-                    _uiState.update { it.copy(isLoading = false) }
+                    _uiState.update { it.copy(isLoading = false, isDataInitError = true) }
                     _events.send(CoinListEvent.Error(error))
                 }
         }
     }
-
 }

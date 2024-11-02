@@ -152,7 +152,7 @@ fun CoinDetailScreen(
                         xAxisLabelSpacing = 8.dp,
                         labelFontSize = 14.sp
                     ),
-                    visibleDataPointsIndices = startIndex .. coin.coinPriceHistory.lastIndex,
+                    visibleDataPointsIndices = startIndex..coin.coinPriceHistory.lastIndex,
                     unit = "$",
                     modifier = Modifier
                         .fillMaxWidth()
@@ -163,6 +163,19 @@ fun CoinDetailScreen(
                         selectedDataPoint = it
                     },
                     onXLabelWidthChange = { labelWidth = it }
+                )
+            }
+        }
+    } else {
+        Box(
+            modifier = Modifier
+                .fillMaxSize(),
+            contentAlignment = Alignment.Center,
+        ) {
+            if (!coinListState.isDataInitError) {
+                Text(
+                    text = stringResource(R.string.choose_a_coin_to_see_more_details),
+                    color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f)
                 )
             }
         }

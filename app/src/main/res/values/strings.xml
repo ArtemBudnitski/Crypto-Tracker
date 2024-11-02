@@ -8,4 +8,7 @@
     <string name="markert_cap">Market Cap</string>
     <string name="price">Price</string>
     <string name="change_last_24h">Change last 24h</string>
+    <string name="search_coins">Search coins</string>
+    <string name="choose_a_coin_to_see_more_details">Choose a coin to see more details</string>
+    <string name="try_again">Try again</string>
 </resources>

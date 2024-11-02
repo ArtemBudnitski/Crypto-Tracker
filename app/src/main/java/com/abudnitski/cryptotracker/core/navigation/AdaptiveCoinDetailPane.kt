@@ -51,8 +51,12 @@ fun AdaptiveCoinDetailPane(
                                     pane = ListDetailPaneScaffoldRole.Detail
                                 )
                             }
+                            else -> {}
                         }
-                    }
+                    },
+                    queryText = state.searchText,
+                    onQueryChange = { viewModel.onSearchTextChange(it) },
+                    onSearch = { viewModel.onSearch(it) }
                 )
             }
         },
