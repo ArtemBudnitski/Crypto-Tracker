@@ -1,6 +1,10 @@
-# Crypto-Tracker
+# Crypto Tracker
 
-# Crypto-Tracker (English)
+| Phone | Tablet |
+|-------|--------|
+|![Screen_recording_20241103_180125](https://github.com/user-attachments/assets/ffcf0ba6-53c6-4771-87ea-13d790b258a1)|![Screen_recording_20241103_181332](https://github.com/user-attachments/assets/77c812a7-6169-412f-b19a-5545b09c1bf3)|
+
+# English
 
 **[Polski](#crypto-tracker)** | English
 
@@ -25,6 +29,8 @@ Crypto-Tracker is an Android mobile application that enables users to track cryp
 - **Historical Data Visualization:** Displays charts showing price changes over time.
 
 ---
+
+## Poslki
 
 **Polski | [English](#crypto-tracker-english)**
 
