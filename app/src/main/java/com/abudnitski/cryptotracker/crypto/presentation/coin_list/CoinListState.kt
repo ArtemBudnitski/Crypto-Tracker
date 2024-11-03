@@ -7,6 +7,7 @@ import com.abudnitski.cryptotracker.crypto.presentation.model.CoinUi
 data class CoinListState(
     val isLoading: Boolean = false,
     val coins: List<CoinUi> = emptyList(),
+    val filteredCoins: List<CoinUi> = emptyList(),
     val selectedCoin: CoinUi? = null,
     val searchText: String = "",
     val isDataInitError: Boolean = false

@@ -54,7 +54,7 @@ class CoinListViewModel(
     fun onSearch(text: String) {
         _uiState.update {
             it.copy(
-                coins = it.coins.filter { coin ->
+                filteredCoins = it.coins.filter { coin ->
                     coin.symbol.contains(text, ignoreCase = true) || coin.name.contains(text, ignoreCase = true)
                 })
         }
@@ -118,7 +118,10 @@ class CoinListViewModel(
                             coins = coins.map { coin ->
                                 coin.toCoinUi()
                             },
-                            isDataInitError = false
+                            isDataInitError = false,
+                            filteredCoins = coins.map { coin ->
+                                coin.toCoinUi()
+                            }
                         )
                     }
                 }

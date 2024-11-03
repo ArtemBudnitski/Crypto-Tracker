@@ -105,7 +105,7 @@ fun CoinListScreen(
                     .padding(padding),
                 verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
-                items(coinListState.coins) { coinUi ->
+                items(coinListState.filteredCoins) { coinUi ->
                     CoinListItem(
                         coinUi = coinUi,
                         onClick = {
