@@ -30,7 +30,7 @@ Crypto-Tracker is an Android mobile application that enables users to track cryp
 
 ---
 
-## Poslki
+## Polski
 
 **Polski | [English](#crypto-tracker-english)**
 
